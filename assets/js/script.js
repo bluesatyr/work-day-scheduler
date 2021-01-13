@@ -20,9 +20,17 @@ var thisHour = $('.am-9').text().trim(); // use data-* and dataset.*
 console.log(thisHour);
 $('.am-9').next().addClass('present'); // add present class to the next sibling
 
+var child = $('.row:first-child div:first-child').text().trim();
 
-if (currentHour === thisHour){
-    console.log(true);
-} else {
-    console.log(false);
-}
+console.log(child);
+
+
+
+/*
+$('.row').each(function(i){
+   var child = this.first();
+   if (child.dataset.hour < now.format(H)){
+       this.next().addClass('past');
+   }
+});
+*/
