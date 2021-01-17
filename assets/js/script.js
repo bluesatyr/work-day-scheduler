@@ -1,6 +1,5 @@
 // get the current hour
 var now = moment();
-console.log(now.hour(20));
 var currentHour = now.format("hA");
 console.log(currentHour);
 
@@ -29,16 +28,6 @@ var renderTasks = function() {
 // update the view => renderTasks()
 // add more grid classes to make it responsive
 
-/* var thisHour = $('.am-9').text().trim(); // use data-* and dataset.*
-console.log(thisHour); */
-
-$('.am-9').next().addClass('present'); // add present class to the next sibling
-
-var child = $('.row:first-child div:first-child').text().trim();
-
-console.log(child);
-
-
 
 $('.save-btn').click(function(){
     var index =  $('.save-btn').index(this);
@@ -49,11 +38,31 @@ $('.save-btn').click(function(){
 
 
 
-/*
-$('.row').each(function(i){
-   var child = this.first();
-   if (child.dataset.hour < now.format(H)){
-       this.next().addClass('past');
-   }
-});
-*/
+var hourStatus =function(){
+    $('.row').each(function(){
+        var hour = $(this).find('.hour');
+        hour.removeClass('past present future');
+        if ($(this).data('hour') < now.format('H')) {
+            hour.addClass('past');
+        }  else if ($(this).data('hour') > now.format('H')) {
+            hour.addClass('future');
+        } else {
+            hour.addClass('present');
+        };
+    });
+};
+        /*
+        if ($(this).data('hour') < now.format('H')){
+            $(this).next().removeClass('present future');
+            $(this).next().addClass('past');
+        } else if ($(this).data('hour') === now.format(H)){
+            $(this).next().removeClass('past future');
+            $(this).next().addClass('present');
+        } else if ($(this).data('hour') > now.format(H)){
+            $(this).next().removeClass('past present');
+            $(this).next().addClass('future');
+        } */
+
+
+
+
